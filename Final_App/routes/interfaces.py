@@ -37,11 +37,7 @@ def recommendation_section(data, title):
         st.markdown(data['Titles'][4])
 
 
-def collaborative_filtering(top_books, title):
-    return
-
-
-def main_interface(model_type):
+def main_interface():
     st.header("BOOK RECOMMENDATION ENGINE")
 
     st.text("")
@@ -75,7 +71,11 @@ def main_interface(model_type):
         highly_rated_ = hf.highly_rated_books()
         recommendation_section(data=highly_rated_, title="These books were rated high")
 
-        # Validating Model Type
-        if model_type == "Collaborative-based":
+        if book_name is not "":
             top_10_books = hf.collaborative_filtering(book_name=book_name)
-            recommendation_section(data=top_10_books, title="Top 5 similar books")
+            recommendation_section(data=top_10_books, title="Here our top 5 recommendations on similar books")
+        else:
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("Enter a book for personalised recommendations!")
