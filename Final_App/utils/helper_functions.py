@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.load_utils import data_frame_
 from utils.load_utils import matrix_col
+from utils.load_utils import load_matrix
 
 
 def most_freq_books():
@@ -62,31 +63,25 @@ def highly_rated_books():
 
 
 def collaborative_filtering(book_name):
+    hp = load_matrix()
+
     # Similar books
-    top_10_similar_books = pd.DataFrame(matrix_col[book_name].sort_values(ascending=False)).iloc[1:]
+    top_10_similar_books = pd.DataFrame(matrix_col["2nd Chance"].sort_values(ascending=False)).iloc[1:]
 
-    books = top_10_similar_books.head(10)
-
-    book_titles = ['Cuentos del Planeta Tierra', 'Dark Lady',
-       'Danny the Champion of the World', 'Danger',
-       'Dancing at the Rascal Fair: A Novel',
-       'Dancing On My Grave Gelsey Kirkland', 'Dances With Wolves',
-       'Daisy Fay and the Miracle Man', "Daddy's Little Girl", 'DREAMSNAKE']
+    books = top_10_similar_books.iloc[hp, :].index
 
     images = list()
 
-    for book in book_titles:
+    for book in books:
         images.append(data_frame_[data_frame_['Book-Title'] == book]['Image-URL-L'].iloc[0])
 
-    colla_books_ = {
-        'Titles': book_titles,
+    book_info_ = {
+        'Titles': books,
         'Images': images
     }
 
-    return colla_books_
+    return book_info_
 
-    # for book in books.index:
-    #     if book in data_frame_['Book-Title'].values:
-    #         print("Yes")
-    #     else:
-    #         print(data_frame_[data_frame_['User-ID'] == book]['Book-Title'].iloc[0])
+
+def validate_user(user_id):
+    return user_id == data_frame_[data_frame_['User-ID'] == user_id]['User-ID'].iloc[0]

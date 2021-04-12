@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 
 def data():
@@ -9,10 +10,22 @@ def data():
 
 
 def matrix_data():
-    data_dir = "./data/collaborative_dataset.csv"
-    data_mat = pd.read_csv(data_dir)
+    data_dir = "./data/matrix_dataset.csv"
+    data_mat = pd.read_csv(data_dir).set_index("Unnamed: 0")
 
     return data_mat
+
+
+def load_matrix():
+    random_list = []
+    for i in range(0, 5):
+        n = random.randint(0, 400)
+        random_list.append(n)
+
+    data_dir = "./data/matrix_dataset.csv"
+    data_mat = pd.read_csv(data_dir).set_index("Unnamed: 0")
+
+    return random_list
 
 
 # Original DataFrame
