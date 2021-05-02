@@ -9,7 +9,7 @@ I'll try as much as possible to make updates on my daily bytes.
 #### Mini-Projects
 - Analyzing Log Files
 - Web Scrapping, News Data
-- Etc
+- Image Classifier
 
 #### Concepts
 - Unsupervised learning algorithms
