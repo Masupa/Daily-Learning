@@ -2,9 +2,12 @@ import numpy as np
 from sklearn.model_selection import cross_val_score
 
 
-class GridSearch:
+class GridSearchCV:
     """
-    A class to perform GridSearch CV
+    GridSearch class takes a machine learning model along with
+    a dictionary of containing the model's parameters values, fit
+    the model on a test dataset and returns a model that generalizes
+    well on a test dataset along with the best parameters.
     ...
 
     # TODO 1 - Write a good doc-string for this class
